@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Subir Certificado</h1>
+  <form action="{{ url_for('subir_certificado') }}" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="user_id" class="text-left">Buscar usuario por documento:</label>
+      <select class="form-control float-left" name="user_id" id="user_id">
+        {% for user in users %}
+        <option value="{{ user[0] }}">{{ user[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="type_id" class="text-left">Tipo de certificado:</label>
+      <select class="form-control float-left" name="type_id" id="type_id">
+        {% for certificate_type in certificate_types %}
+        <option value="{{ certificate_type[0] }}">{{ certificate_type[1] }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="file" class="text-left">Archivo:</label>
+      <input type="file" class="form-control-file float-left" name="file" id="file">
+    </div>
+    <button type="submit" class="btn btn-warning">Subir</button>
+  </form>
+</div>
+{% endblock %}

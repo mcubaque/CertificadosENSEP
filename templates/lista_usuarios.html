@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de usuarios</title>
+</head>
+<body>
+    <h1>Lista de usuarios</h1>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th class="text-center">Nombre de usuario</th>
+                <th class="text-center">Contraseña</th>
+                <th class="text-center">Administrador</th>
+                <th class="text-center">Nombre</th>
+                <th class="text-center">Apellido</th>
+                <th class="text-center">Documento</th>
+                <th class="text-center">Correo electrónico</th>
+                <th class="text-center">Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td class="text-center">{{ usuario.username }}</td>
+                <td class="text-center">{{ usuario.password }}</td>
+                <td class="text-center">{{ usuario.is_admin }}</td>
+                <td class="text-center">{{ usuario.name }}</td>
+                <td class="text-center">{{ usuario.last_name }}</td>
+                <td class="text-center">{{ usuario.document }}</td>
+                <td class="text-center">{{ usuario.email }}</td>
+                <td class="text-center">{{ usuario.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+{% endblock %}

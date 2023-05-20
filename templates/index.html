@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inicio</title>
+  </head>
+  <body>
+	{% if es_admin %}
+	<button type="button" class="btn btn-warning">
+		<a href="{{ url_for('dashboard') }}">Dashboard</a>
+	</button>
+
+	<button type="button" class="btn btn-warning">
+		<a href="{{ url_for('agregar_usuario') }}">Crear Usuario</a>
+	</button>
+
+	<button type="button" class="btn btn-warning">
+		<a href="{{ url_for('lista_usuarios') }}">Ver Usuarios</a>
+	</button>
+
+	<button type="button" class="btn btn-warning">
+		<a href="{{ url_for('subir_certificado_form') }}">Subir Certificado</a>
+	</button>
+	  
+	<button type="button" class="btn btn-warning">
+		<a href="{{ url_for('upload_form') }}">Cargue masivo</a>
+	</button>
+
+	<!-- <button type="button" class="btn btn-warning">
+		<a href="{{ url_for('certificate_form') }}">Generar Certificados</a>
+	</button> -->
+	{% endif %}
+    <table class="table">
+		<thead class="thead-dark">
+		  <tr>
+			<th class="text-center">ID</th>
+			<th class="text-center">Usuario</th>
+			<th class="text-center">Tipo de Certificado</th>
+			<th class="text-center">Nombre de archivo</th>
+			<th class="text-center">Fecha de carga</th>
+		  </tr>
+		</thead>
+		<tbody>
+		  {% for certificate in certificates %}
+		  <tr>
+			<td class="text-center">{{ certificate[0] }}</td>
+			<td class="text-center">{{ certificate[1] }}</td>
+			<td class="text-center">{{ certificate[2] }}</td>
+			<td class="text-center">
+				<a href="{{ url_for('download',  filename=certificate[3], certificate_id=certificate['id']) }}" download>
+					{{ certificate[3] }} 
+				</a>
+			</td>
+			<td class="text-center">{{ certificate[4] }}</td>
+		  </tr>
+		  {% endfor %}
+		</tbody>
+	  </table>
+  </body>
+</html>
+{% endblock %}

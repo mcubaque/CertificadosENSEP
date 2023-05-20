@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<html>
+<body>
+   <h1>Dashboard</h1>
+   
+   <h2>Subidos por fecha</h2>
+   <img src="{{ url_for('static', filename='upload_count.png') }}">
+   
+   <h2>Descargados por fecha</h2>     
+   <img src="{{ url_for('static', filename='download_count.png') }}">
+   
+</body> 
+</html>
+{% endblock %}
