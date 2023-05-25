@@ -1,16 +1,23 @@
-import pyodbc
+import pymysql
 
 class Config:
-    SQL_SERVER = '34.123.86.131'
-    SQL_DATABASE = 'Certificados'
-    SQL_USERNAME = 'ConexionCertificados'
-    SQL_PASSWORD = 'ConexionCertificados'
-    SQL_DRIVER = 'ODBC Driver 17 for SQL Server'
+    MYSQL_HOST = 'localhost'
+    MYSQL_PORT = 3306
+    MYSQL_DATABASE = 'Certificados'
+    MYSQL_USER = 'root'
+    MYSQL_PASSWORD = '123456'
 
     @staticmethod
     def init_app(app):
         pass
 
-def get_db():
-    conn_str = f"DRIVER={Config.SQL_DRIVER};SERVER={Config.SQL_SERVER};DATABASE={Config.SQL_DATABASE};UID={Config.SQL_USERNAME};PWD={Config.SQL_PASSWORD}"
-    return pyodbc.connect(conn_str)
+    @staticmethod
+    def get_db():
+        conn = pymysql.connect(
+            host=Config.MYSQL_HOST,
+            port=Config.MYSQL_PORT,
+            user=Config.MYSQL_USER,
+            password=Config.MYSQL_PASSWORD,
+            database=Config.MYSQL_DATABASE
+        )
+        return conn

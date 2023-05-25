@@ -48,10 +48,15 @@
 			<td class="text-center">{{ certificate[1] }}</td>
 			<td class="text-center">{{ certificate[2] }}</td>
 			<td class="text-center">
-				<a href="{{ url_for('download',  filename=certificate[3], certificate_id=certificate['id']) }}" download>
+				<a href="{{ url_for('download', certificate_id=certificate[0]) }}">
 					{{ certificate[3] }} 
+				</a>          
+			  </td>
+			<!--<td class="text-center">
+				<a href="{{ url_for('static', filename=certificate[3]) }}" download>
+					{{ certificate[3] }}
 				</a>
-			</td>
+			</td> -->						
 			<td class="text-center">{{ certificate[4] }}</td>
 		  </tr>
 		  {% endfor %}
